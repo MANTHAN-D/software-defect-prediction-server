@@ -1,0 +1,13 @@
+node_modules
+
+#ignore settings
+.settings/*
+
+#class-path
+.classpath
+
+#project file
+.project
+
+#class files
+target/*
