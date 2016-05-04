@@ -33,7 +33,7 @@ public class ModellingDataDAO {
 	private static String arffFilePath;
 	private static String[] args; 
 	/*private static final String RESOURCEBASEURL = "http://localhost:8080/software-defect-classification-service/rest/dummyService/dummyData";*/
-	private static final String RESOURCEBASEURL = "http://10.0.0.203:3000/clusters/getData?source=";
+	private static final String RESOURCEBASEURL = "http://localhost:3000/clusters/getData?source=";
 	
 	public static void getModellingDataInput(String toolName) throws TempFileException{
 		String[] args = new String[2];

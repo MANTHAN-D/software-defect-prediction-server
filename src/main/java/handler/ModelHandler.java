@@ -23,8 +23,9 @@ import myra.util.Logger;
 public class ModelHandler {
 	
 	private static List<ArffModel> responseDataList = null;
-	private static Map<String, Model> modelMap = new HashMap<>();;
+	private static Map<String, Model> modelMap = new HashMap<>();
 	private static UcAntMinerPB algorithm = new UcAntMinerPB();	
+	private static Map<String, String> rulesMap = new HashMap<>();
 	
 	public static String generateModel(String toolName){
 		if(!modelMap.containsKey(toolName) || modelMap.get(toolName) == null){
@@ -91,6 +92,22 @@ public class ModelHandler {
 		Logger.log("\nReturning from classification....." + responseDataList);		
 	}
 	
+	public static void getRuleSet(String toolName){
+		/**Check if model exists*/						
+		if(!modelMap.containsKey(toolName) || modelMap.get(toolName) == null){
+			try {
+				/*modelMap.put(toolName,algorithm.generateModel(ModellingDataDAO.getModellingDataInput(toolName)));*/
+				ModellingDataDAO.getModellingDataInput(toolName);
+				algorithm.generateModel(toolName, ModellingDataDAO.getArgs());
+			} catch (TempFileException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				rulesMap.put(toolName, "Rules unavailable");
+			}			
+		}		
+		Logger.log("Rule set generated " + rulesMap.get(toolName));			
+	}
+	
 	public static void setModel(String toolName, Model model){
 		modelMap.put(toolName, model);
 	}
@@ -109,6 +126,12 @@ public class ModelHandler {
 		ModelHandler.responseDataList = responseDataList;
 	}
 	
+	public static void setRules(String toolName, String ruleSet){
+		rulesMap.put(toolName, ruleSet);
+	}
 	
+	public static String returnRuleSet(String toolName){
+		return rulesMap.get(toolName);
+	}
 
 }

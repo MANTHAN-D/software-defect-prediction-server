@@ -520,9 +520,12 @@ public abstract class Classifier {
     	    ModelHandler.setModel(toolName, model);
     	    
     	    Logger.log("=== Discovered Model ===%n%n");
-    	    Logger.log(model.toString(dataset));
+    	    String ruleSet = model.toString(dataset); 
+    	    Logger.log(ruleSet);
     	    Logger.log("%n");
-
+    	    
+    	    ModelHandler.setRules(toolName, ruleSet);
+    	    
     	    double elapsed = (System.nanoTime() - start) / Math.pow(10, 9);
 
     	    Accuracy measure = new Accuracy();
