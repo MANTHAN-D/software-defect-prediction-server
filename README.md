@@ -36,3 +36,8 @@ Note: If both the systems are to be executed on same machine, do following and c
 	Front-end:
 		-- Change line 76 of file project_dir/routes/upload.js to following:
 			url: 'http://localhost:8080/software-defect-classification-service/rest/classificationService/classify'
+
+
+Bibliography:
+
+1. http://openscience.us/repo/defect/ck/ (Datasets)
